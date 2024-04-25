@@ -1,6 +1,4 @@
 datetime
-json
 requests
-os
 pandas
 python-dotenv
