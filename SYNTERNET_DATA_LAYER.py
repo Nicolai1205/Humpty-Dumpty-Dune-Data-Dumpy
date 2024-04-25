@@ -64,11 +64,29 @@ csv_filename = 'syntropy_latest.csv'
 csv_file_path = os.path.join(csv_directory, csv_filename)
 
 
-# Workflow execution
-raw_data = fetch_latest_kpis(api_url)
-processed_data = process_data(raw_data)
-if not processed_data.empty:
-    save_to_csv(processed_data, csv_file_path)
-    upload_data_to_dune(csv_file_path, api_key)
-else:
-    print("No data available to save or upload.")
+def main():
+    # Configuration
+    api_url = os.getenv('API_URL')
+    if not api_url:
+        raise ValueError("API_URL is not set. Make sure the secret is correctly configured in GitHub Actions.")
+    
+    api_key = os.getenv('API_KEY')
+    if not api_key:
+        raise ValueError("API_KEY is not set. Make sure the secret is correctly configured in GitHub Actions.")
+
+    csv_directory = os.getenv('CSV_DIRECTORY', './data')
+    csv_filename = 'syntropy_latest.csv'
+    csv_file_path = os.path.join(csv_directory, csv_filename)
+
+    # Workflow execution
+    raw_data = fetch_latest_kpis(api_url)
+    processed_data = process_data(raw_data)
+    
+    if not processed_data.empty:
+        save_to_csv(processed_data, csv_file_path)
+        upload_data_to_dune(csv_file_path, api_key)
+    else:
+        print("No data available to save or upload.")
+
+if __name__ == '__main__':
+    main()
