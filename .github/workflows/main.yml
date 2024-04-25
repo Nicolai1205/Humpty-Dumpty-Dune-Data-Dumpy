@@ -31,6 +31,7 @@ jobs:
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
+          CSV_DIRECTORY: ${{ github.workspace }}/data
 
       - name: Wait and Retry if Failed
         if: failure()
@@ -42,4 +43,5 @@ jobs:
         env:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
+          CSV_DIRECTORY: ${{ github.workspace }}/data
   
