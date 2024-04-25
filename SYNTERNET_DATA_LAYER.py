@@ -57,11 +57,12 @@ def upload_data_to_dune(file_path, api_key):
         print(f"An unexpected error occurred: {e}")
 
 # Configuration
-api_url = 'https://api-kpi.synternet.com/api/v1/public/kpis/latest'
-csv_directory = '/Users/nicolaisondergaard/Code/Cool Drugs/DUNE/SYNTROPY/'
+api_url = os.getenv('API_URL')
+api_key = os.getenv('API_KEY')
+csv_directory = os.getenv('CSV_DIRECTORY', './data')  # Defaulting to a data directory relative to the script
 csv_filename = 'syntropy_latest.csv'
 csv_file_path = os.path.join(csv_directory, csv_filename)
-api_key = 'bAYYGbY4JiWyMN6P9vMLtT2BosZwXp97'
+
 
 # Workflow execution
 raw_data = fetch_latest_kpis(api_url)
