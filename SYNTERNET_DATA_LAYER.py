@@ -37,7 +37,7 @@ def save_to_csv(df, file_path):
     print(f"Data saved to CSV at {file_path}")
 
 def upload_data_to_dune(file_path, api_key):
-    url = "https://api.dune.com/api/v1/table/gaard/syntropy_data_layer/insert"
+    url = 'https://api.dune.com/api/v1/table/gaard/syntropy_data_layer/insert'
     headers = {
         "X-DUNE-API-KEY": api_key,
         "Content-Type": "text/csv"
