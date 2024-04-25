@@ -56,10 +56,10 @@ def upload_data_to_dune(file_path, api_key):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-# Configuration
+# Configuration - Maybe redundant as they are called in main
 api_url = os.getenv('API_URL')
 api_key = os.getenv('API_KEY')
-csv_directory = os.getenv('CSV_DIRECTORY', './data')  # Defaulting to a data directory relative to the script
+csv_directory = os.getenv('CSV_DIRECTORY', './data')  
 csv_filename = 'syntropy_latest.csv'
 csv_file_path = os.path.join(csv_directory, csv_filename)
 
