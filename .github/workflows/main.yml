@@ -25,11 +25,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Debug Step to Print API_URL (Temporary - Remember to Delete After)
-      - name: Debug - Print API_URL
-        run: echo "API_URL is $API_URL"
+      # Step to Write API_URL to a File (Temporary - Remember to Delete After)
+      - name: Write API_URL to File
+        run: echo "$API_URL" > $GITHUB_WORKSPACE/api_url.txt
         env:
           API_URL: ${{ secrets.API_URL }}
+
+      - name: Upload API_URL File as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: api_url
+          path: $GITHUB_WORKSPACE/api_url.txt
 
       - name: Run Synternet Data Layer
         run: python SYNTERNET_DATA_LAYER.py
