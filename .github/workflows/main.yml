@@ -27,15 +27,19 @@ jobs:
 
       # Step to Write API_URL to a File (Temporary - Remember to Delete After)
       - name: Write API_URL to File
-        run: echo "$API_URL" > $GITHUB_WORKSPACE/api_url.txt
+        run: echo "$API_URL" > api_url.txt
         env:
           API_URL: ${{ secrets.API_URL }}
+
+      # Debugging Step: List files to verify api_url.txt is created
+      - name: List Files
+        run: ls -la 
 
       - name: Upload API_URL File as Artifact
         uses: actions/upload-artifact@v3
         with:
           name: api_url
-          path: $GITHUB_WORKSPACE/api_url.txt
+          path: api_url.txt
 
       - name: Run Synternet Data Layer
         run: python SYNTERNET_DATA_LAYER.py
