@@ -25,6 +25,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Debug Step to Print API_URL (Temporary - Remember to Delete After)
+      - name: Debug - Print API_URL
+        run: echo "API_URL is $API_URL"
+        env:
+          API_URL: ${{ secrets.API_URL }}
+
       - name: Run Synternet Data Layer
         run: python SYNTERNET_DATA_LAYER.py
         continue-on-error: true
@@ -44,4 +50,3 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           API_URL: ${{ secrets.API_URL }}
           CSV_DIRECTORY: ${{ github.workspace }}/data
-  
